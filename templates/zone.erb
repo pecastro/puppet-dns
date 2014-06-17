@@ -32,5 +32,8 @@ type <%= @zone_type %>;
     <% end -%>
     };
 <% end -%>
+<% if @dns_key_name -%>
+  allow-update { key <%= dns_key_name %>; };
+<% end -%>
 
 };
