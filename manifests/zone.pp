@@ -14,6 +14,7 @@ define dns::zone (
   $allow_transfer = [],
   $allow_forwarder = [],
   $forward_policy = 'first',
+  $dns_key_name = undef,
   $slave_masters = undef,
   $zone_notify = undef,
   $also_notify = [],
