@@ -7,10 +7,12 @@ dns::server::options { "${dns::server::params::cfg_dir}/named.conf.options":
 }
 
 dns::zone { 'example.com':
-  soa            => 'ns1.example.com',
-  soa_email      => 'admin.example.com',
-  nameservers    => [ 'ns1' ],
-  allow_transfer => [ '192.0.2.0', '2001:db8::/32' ]
+  soa         => 'ns1.example.com',
+  soa_email   => 'admin.example.com',
+  nameservers => [ 'ns1' ],
+  allow_transfer => [ '192.0.2.0', '2001:db8::/32' ],
+  dns_key_name => 'rndc-key',
+  dns_key_file => '/etc/bind/rndc.key',
 }
 
 dns::zone { '56.168.192.IN-ADDR.ARPA':
