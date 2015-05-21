@@ -94,10 +94,12 @@ define dns::zone (
     order   => 3,
     content => template("${module_name}/zone.erb")
   }
-  # Include key file in named.conf.local
-  file_line { "Include key file for zone ${name}":
-    path   => "/etc/bind/named.conf.local",
-    line   => "include \"${dns_key_file}\";",
-    ensure => present
+  if $dns_key_file != undef {
+    # Include key file in named.conf.local
+    file_line { "Include key file for zone ${name}":
+      path   => "${cfg_dir}/named.conf.local",
+      line   => "include \"${dns_key_file}\";",
+      ensure => present
+    }
   }
 }
